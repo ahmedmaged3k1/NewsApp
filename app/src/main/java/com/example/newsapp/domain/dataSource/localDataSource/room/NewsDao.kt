@@ -1,4 +1,4 @@
-package com.example.newsapp.domain.dataSource.localDataSource
+package com.example.newsapp.domain.dataSource.localDataSource.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
