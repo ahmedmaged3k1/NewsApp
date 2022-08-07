@@ -18,7 +18,7 @@ interface NewsDao {
 
 
     @Query("SELECT * FROM  News ")
-   suspend fun getAllNews(): LiveData<List<News>>?
+   suspend fun getAllNews(): List<News>?
 
 
 }

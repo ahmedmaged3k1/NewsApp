@@ -10,17 +10,6 @@ import kotlinx.coroutines.withContext
 
 class NewsLocalDataSource(context: Context) : NewsLocalRepository {
     private var newsDatabase: NewsDatabase? = NewsDatabase.getInstance(context)
-
-    companion object {
-        private var INSTANCE: NewsLocalDataSource? = null
-        fun getInstance(context: Context): NewsLocalDataSource? {
-            if (INSTANCE == null) {
-                INSTANCE = NewsLocalDataSource(context)
-            }
-            return INSTANCE
-        }
-    }
-
     override suspend fun insert(news: News) {
         withContext(Dispatchers.IO) {
             newsDatabase?.newsDao?.insert(news)
@@ -42,7 +31,7 @@ class NewsLocalDataSource(context: Context) : NewsLocalRepository {
 
     }
 
-    override suspend fun getAllNews(): LiveData<List<News>>? {
+    override suspend fun getAllNews(): List<News>? {
         return newsDatabase?.newsDao?.getAllNews()
     }
 
