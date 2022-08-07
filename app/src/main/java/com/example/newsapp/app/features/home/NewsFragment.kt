@@ -1,6 +1,5 @@
 package com.example.newsapp.app.features.home
 
-import android.os.Build
 import android.os.Bundle
 import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
@@ -31,7 +30,7 @@ class NewsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentNewsBinding.inflate(inflater, container, false)
         recycleViewInitialization()
-
+        initializeLocalNews()
         return binding.root
     }
 
@@ -47,16 +46,20 @@ class NewsFragment : Fragment() {
         CoroutineScope(IO).launch {
             viewModel.getAllArticles("samsung")
         }
-
         viewModel.newsList.observe(viewLifecycleOwner, Observer {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                Log.d(TAG, "initializeNews: entering  ")
-            }
             val map = it.map { it }
             newsRecyclerViewAdapter.submitList(map)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                Log.d(TAG, "initializeNews: ${map.size}")
-            }
+        })
+    }
+
+    private fun initializeLocalNews() {
+        val newsLocalViewModel = activity?.let { NewsLocalViewModel(it.application) }
+        CoroutineScope(IO).launch {
+            newsLocalViewModel?.getArticles()
+        }
+        newsLocalViewModel?.newsList?.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "initializeLocalNews: ${it.size}")
+
         })
     }
 

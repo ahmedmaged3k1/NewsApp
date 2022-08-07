@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.newsapp.entities.News
 
-@Database(entities = [News::class], version = 1, exportSchema = false)
+@Database(entities = [News::class], version = 6, exportSchema = false)
 abstract class NewsDatabase : RoomDatabase() {
 
     abstract val newsDao: NewsDao
@@ -27,7 +27,6 @@ abstract class NewsDatabase : RoomDatabase() {
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-
                     INSTANCE = instance
                 }
                 return instance

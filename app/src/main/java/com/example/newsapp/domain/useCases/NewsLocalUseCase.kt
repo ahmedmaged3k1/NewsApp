@@ -9,9 +9,9 @@ import com.example.newsapp.entities.News
 class NewsLocalUseCase(context: Context) {
     private val newsLocalDataSource = NewsLocalDataSource(context)
     suspend fun getAllArticles(): List<News>? {
-        newsLocalDataSource.insert(News("AS", "AS", "AS", "AS", "AS", "AS", "AS"))
-        newsLocalDataSource.insert(News("Am", "AS", "AS", "AS", "AS", "AS", "AS"))
-        newsLocalDataSource.insert(News("At", "AS", "AS", "AS", "AS", "AS", "AS"))
+        //newsLocalDataSource.insert(News("AS", "AS", "AS", "AS", "AS", "AS", "AS",2))
+       // newsLocalDataSource.insert(News("Am", "AS", "AS", "AS", "AS", "AS", "AS",1))
+       // newsLocalDataSource.insert(News("At", "AS", "AS", "AS", "AS", "AS", "AS",3))
 
         Log.d(
             ContentValues.TAG,

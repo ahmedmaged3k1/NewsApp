@@ -18,7 +18,7 @@ class NewsRemoteDataSource : NewsRemoteRepository {
         withContext(Dispatchers.IO) {
             try {
                 val response =
-                    RetrofitInstance.getNewsApi().getAllArticles(searchQuery,Credentials.apiKey).body()?.articles ?: listOf(News("AS","AS","AS","AS","AS","AS","AS"))
+                    RetrofitInstance.getNewsApi().getAllArticles(searchQuery,Credentials.apiKey).body()?.articles ?: listOf(News("AS","AS","AS","AS","AS","AS","AS",1))
                 newsList =response
                     Log.d(ContentValues.TAG, "getAllArticles: repo ${ newsList.size}")
 

@@ -8,7 +8,7 @@ import com.example.newsapp.entities.News
 
 class NewsLocalViewModel (application: Application) : AndroidViewModel(application) {
     private val newsLocalUseCae = NewsLocalUseCase(application)
-    private val newsList  = MutableLiveData<List<News>>()
+     val newsList  = MutableLiveData<List<News>>()
     suspend fun getArticles(){
         newsList.postValue(newsLocalUseCae.getAllArticles())
 
