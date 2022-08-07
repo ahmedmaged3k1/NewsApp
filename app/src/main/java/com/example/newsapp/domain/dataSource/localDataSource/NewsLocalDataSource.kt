@@ -1,7 +1,6 @@
 package com.example.newsapp.domain.dataSource.localDataSource
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import com.example.newsapp.domain.dataSource.localDataSource.room.NewsDatabase
 import com.example.newsapp.domain.repositories.NewsLocalRepository
 import com.example.newsapp.entities.News
