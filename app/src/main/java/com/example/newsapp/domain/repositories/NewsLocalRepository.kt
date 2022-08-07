@@ -9,5 +9,5 @@ interface NewsLocalRepository {
     suspend fun insert(news: News)
     suspend fun update(news: News)
     suspend fun delete (news: News)
-    fun getAllNews(): LiveData<List<News>>?
+    suspend fun getAllNews(): LiveData<List<News>>?
 }

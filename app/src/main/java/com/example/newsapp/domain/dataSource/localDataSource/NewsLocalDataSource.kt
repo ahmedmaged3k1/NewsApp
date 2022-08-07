@@ -42,7 +42,7 @@ class NewsLocalDataSource(context: Context) : NewsLocalRepository {
 
     }
 
-    override fun getAllNews(): LiveData<List<News>>? {
+    override suspend fun getAllNews(): LiveData<List<News>>? {
         return newsDatabase?.newsDao?.getAllNews()
     }
 

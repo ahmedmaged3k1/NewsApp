@@ -8,17 +8,17 @@ import com.example.newsapp.entities.News
 @Dao
 interface NewsDao {
     @Insert
-    fun insert(news: News)
+    suspend fun  insert(news: News)
 
     @Update
-    fun update(news: News)
+    suspend fun update(news: News)
 
     @Delete
-    fun delete (news: News)
+    suspend fun delete (news: News)
 
 
     @Query("SELECT * FROM  News ")
-    fun getAllNews(): LiveData<List<News>>?
+   suspend fun getAllNews(): LiveData<List<News>>?
 
 
 }
