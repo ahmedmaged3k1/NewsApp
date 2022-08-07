@@ -1,8 +1,10 @@
 package com.example.newsapp.domain.dataSource.remoteDataSource
 
 import android.content.ContentValues
+import android.os.Build
 import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.example.newsapp.domain.core.network.Credentials
 import com.example.newsapp.domain.core.network.RetrofitInstance
 import com.example.newsapp.domain.repositories.NewsRemoteRepository
@@ -14,16 +16,28 @@ class NewsRemoteDataSource : NewsRemoteRepository {
 
     private lateinit var newsList: List<News>
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override suspend fun getAllArticles(searchQuery: String): List<News> {
         withContext(Dispatchers.IO) {
             try {
                 val response =
-                    RetrofitInstance.getNewsApi().getAllArticles(searchQuery,Credentials.apiKey).body()?.articles ?: listOf(News("AS","AS","AS","AS","AS","AS","AS",1))
-                newsList =response
-                    Log.d(ContentValues.TAG, "getAllArticles: repo ${ newsList.size}")
+                    RetrofitInstance.getNewsApi().getAllArticles(searchQuery, Credentials.apiKey)
+                        .body()?.articles ?: listOf(
+                        News(
+                            "AS",
+                            "AS",
+                            "AS",
+                            "AS",
+                            "AS",
+                            "AS",
+                            "AS",
+                            1
+                        )
+                    )
+                newsList = response
+                Log.d(ContentValues.TAG, "getAllArticles: repo ${newsList.size}")
 
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.d(TAG, "getAllArticles: ${e.message}")
             }
         }
