@@ -14,7 +14,5 @@ class NewsViewModel : ViewModel() {
         Log.d(TAG, "getAllArticles: view model ${ newsUseCase.getAllArticles(searchQuery).size}")
         Log.d(TAG, "getAllArticles: view model author ${ newsUseCase.getAllArticles(searchQuery).get(1).author}")
         Log.d(TAG, "getAllArticles: view model description  ${ newsUseCase.getAllArticles(searchQuery).get(1).description}")
-
-
     }
 }
