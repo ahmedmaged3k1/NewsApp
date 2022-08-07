@@ -47,7 +47,7 @@ class NewsRecyclerViewAdapter :
 
         fun onBindItemHolder(holder: NewsViewHolder, position: Int) {
             binding.authorName.text= getItem(position).author
-            Glide.with(holder.itemView.context).load(getItem(position).url).into(binding.newImage)
+            Glide.with(holder.itemView.context).load(getItem(position).urlToImage).into(binding.newImage)
 
         }
 
