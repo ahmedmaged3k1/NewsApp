@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.newsapp.databinding.NewsItemBinding
 import com.example.newsapp.entities.News
 
@@ -30,8 +31,9 @@ val diffCallback = object : DiffUtil.ItemCallback<News>() {
 
 class NewsRecyclerViewAdapter :
     ListAdapter<News, NewsRecyclerViewAdapter.NewsViewHolder>(diffCallback) {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        return
+        return from(parent)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
@@ -40,22 +42,27 @@ class NewsRecyclerViewAdapter :
 
     }
 
-    inner class NewsViewHolder private constructor(private val binding: NewsItemBinding) :
+    inner class NewsViewHolder  constructor(private val binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBindItemHolder(holder: NewsViewHolder, position: Int) {
-            binding.authorName.text= getItem()
+            binding.authorName.text= getItem(position).author
+            Glide.with(holder.itemView.context).load(getItem(position).url).into(binding.newImage)
+
         }
 
 
-            public fun from(parent: ViewGroup): NewsViewHolder {
-                val inflater = LayoutInflater.from(parent.context)
-                val binding = NewsItemBinding.inflate(inflater, parent, false)
-                return NewsViewHolder(binding)
-            }
+
+
 
 
     }
+    private fun from(parent: ViewGroup): NewsViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = NewsItemBinding.inflate(inflater, parent, false)
+        return NewsViewHolder(binding)
+    }
+
 
 
 }
