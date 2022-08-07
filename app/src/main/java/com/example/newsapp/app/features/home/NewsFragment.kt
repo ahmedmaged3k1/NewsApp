@@ -46,10 +46,10 @@ class NewsFragment : Fragment() {
     }
     private fun initializeNews(){
         CoroutineScope(IO).launch {
-            viewModel.getAllArticles("bitcoin")
+            viewModel.getAllArticles("samsung")
         }
-        viewModel.newsList.observe(viewLifecycleOwner, Observer {
 
+        viewModel.newsList.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "initializeNews: entering  ")
             val map = it.map { it }
             newsRecyclerViewAdapter.submitList(map)

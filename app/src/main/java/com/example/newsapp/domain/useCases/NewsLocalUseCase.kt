@@ -6,9 +6,9 @@ import android.util.Log
 import com.example.newsapp.domain.dataSource.localDataSource.NewsLocalDataSource
 import com.example.newsapp.entities.News
 
-class NewsLocalUseCae(context: Context) {
+class NewsLocalUseCase(context: Context) {
     private val newsLocalDataSource = NewsLocalDataSource(context)
-    suspend fun getAllArticles(searchQuery: String): List<News>? {
+    suspend fun getAllArticles(): List<News>? {
         newsLocalDataSource.insert(News("AS", "AS", "AS", "AS", "AS", "AS", "AS"))
         newsLocalDataSource.insert(News("Am", "AS", "AS", "AS", "AS", "AS", "AS"))
         newsLocalDataSource.insert(News("At", "AS", "AS", "AS", "AS", "AS", "AS"))
