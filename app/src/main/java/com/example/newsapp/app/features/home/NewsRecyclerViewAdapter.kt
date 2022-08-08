@@ -59,7 +59,7 @@ class NewsRecyclerViewAdapter :
 
 
     }
-    private fun from(parent: ViewGroup): NewsViewHolder {
+     fun from(parent: ViewGroup): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = NewsItemBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)

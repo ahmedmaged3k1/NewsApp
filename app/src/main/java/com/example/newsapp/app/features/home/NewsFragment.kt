@@ -1,8 +1,6 @@
 package com.example.newsapp.app.features.home
 
 import android.os.Bundle
-import android.service.controls.ControlsProviderService.TAG
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +38,8 @@ class NewsFragment : Fragment() {
         val moviesRecyclerView = binding.newsRecyclerView
         moviesRecyclerView.adapter = newsRecyclerViewAdapter
         val cardFlipPageTransformer = CardFlipPageTransformer2()
-        cardFlipPageTransformer.isScalable = false
+        cardFlipPageTransformer.isScalable = true
+
         binding.newsRecyclerView.setPageTransformer(cardFlipPageTransformer)
         initializeNews()
 
@@ -53,7 +52,8 @@ class NewsFragment : Fragment() {
         observeNews()
 
     }
-    private fun observeNews(){
+
+    private fun observeNews() {
         viewModel.newsList.observe(viewLifecycleOwner, Observer { list ->
             val map = list.map { it }
             newsRecyclerViewAdapter.submitList(map)
@@ -70,14 +70,15 @@ class NewsFragment : Fragment() {
 
         })
     }
-    private fun onSwipeViewPager(){
-        binding.newsRecyclerView.registerOnPageChangeCallback(object :  ViewPager2.OnPageChangeCallback(){
+
+    private fun onSwipeViewPager() {
+        binding.newsRecyclerView.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 viewModel.newsList.value?.get(position)?.seen = 1
-                viewModel.newsList.postValue(viewModel.newsList.value)
-                Log.d(TAG, "onPageSelected: ")
-                observeNews()
+                newsRecyclerViewAdapter.submitList(viewModel.newsList.value)
+
             }
         })
     }
