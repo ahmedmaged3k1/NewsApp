@@ -71,4 +71,8 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     //Navigation
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+    //Interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.4'
+    //ViewPager Animation
+    implementation 'com.wajahatkarim:easyflipviewpager:2.0.1'
 }

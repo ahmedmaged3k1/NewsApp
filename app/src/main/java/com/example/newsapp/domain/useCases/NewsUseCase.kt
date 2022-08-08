@@ -1,5 +1,7 @@
 package com.example.newsapp.domain.useCases
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.newsapp.domain.dataSource.remoteDataSource.NewsRemoteDataSource
 import com.example.newsapp.entities.News
 

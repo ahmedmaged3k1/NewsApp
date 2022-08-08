@@ -10,10 +10,9 @@ data class News(
     @SerializedName("title") var title: String,
     @SerializedName("description") var description: String,
     @SerializedName("url") var url: String,
-
     @SerializedName("urlToImage") var urlToImage: String,
     @SerializedName("publishedAt") var publishedAt: String,
     @SerializedName("content") var content: String,
-    @PrimaryKey(autoGenerate = true) var id : Int
-
+    @PrimaryKey(autoGenerate = true) var id : Int =0
+,var seen : Int =0
 )

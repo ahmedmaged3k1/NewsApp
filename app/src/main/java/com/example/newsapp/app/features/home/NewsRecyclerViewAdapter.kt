@@ -1,34 +1,29 @@
 package com.example.newsapp.app.features.home
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.newsapp.R
 import com.example.newsapp.databinding.NewsItemBinding
 import com.example.newsapp.entities.News
 
 
 val diffCallback = object : DiffUtil.ItemCallback<News>() {
     override fun areItemsTheSame(oldItem: News, newItem: News): Boolean {
-        return oldItem.title == newItem.title
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: News, newItem: News): Boolean {
-        return oldItem.author == newItem.author
-                && oldItem.title == newItem.title
-                && oldItem.description == newItem.description
-                && oldItem.content == newItem.content
-                && oldItem.url == newItem.url
-                && oldItem.urlToImage == newItem.urlToImage
-                && oldItem.publishedAt == newItem.publishedAt
+        return oldItem.seen == newItem.seen
+
+
 
     }
-
-
 }
-
 class NewsRecyclerViewAdapter :
     ListAdapter<News, NewsRecyclerViewAdapter.NewsViewHolder>(diffCallback) {
 
@@ -49,6 +44,12 @@ class NewsRecyclerViewAdapter :
             binding.authorName.text= getItem(position).author
             Glide.with(holder.itemView.context).load(getItem(position).urlToImage).into(binding.newImage)
             binding.description.text=getItem(position).description
+            if(getItem(position).seen==1)
+            {
+                binding.seen.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
+                binding.constraintLayout.setBackgroundColor(Color.RED)
+
+            }
 
         }
 

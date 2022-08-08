@@ -1,6 +1,8 @@
 package com.example.newsapp.domain.core.network
 
 import com.example.newsapp.domain.dataSource.remoteDataSource.NewsApiService
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -9,8 +11,12 @@ class RetrofitInstance {
 
     companion object {
         private val retrofit by lazy {
-
-            Retrofit.Builder().baseUrl(Credentials.baseUrl)
+            val okHttpClient = OkHttpClient.Builder().addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            ).build()
+            Retrofit.Builder().baseUrl(Credentials.baseUrl).client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create()).build()
         }
 

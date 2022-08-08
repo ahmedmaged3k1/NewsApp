@@ -16,7 +16,7 @@ class NewsRemoteDataSource : NewsRemoteRepository {
 
     private lateinit var newsList: List<News>
 
-    @RequiresApi(Build.VERSION_CODES.R)
+
     override suspend fun getAllArticles(searchQuery: String): List<News> {
         withContext(Dispatchers.IO) {
             try {
@@ -38,7 +38,7 @@ class NewsRemoteDataSource : NewsRemoteRepository {
                 Log.d(ContentValues.TAG, "getAllArticles: repo ${newsList.size}")
 
             } catch (e: Exception) {
-                Log.d(TAG, "getAllArticles: ${e.message}")
+
             }
         }
 

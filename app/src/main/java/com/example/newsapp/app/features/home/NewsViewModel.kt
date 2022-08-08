@@ -11,17 +11,6 @@ class NewsViewModel : ViewModel() {
     val newsList = MutableLiveData<List<News>>()
     private val newsUseCase = NewsUseCase()
     suspend fun getAllArticles(searchQuery: String) {
-        Log.d(TAG, "getAllArticles: view model ${newsUseCase.getAllArticles(searchQuery).size}")
-        Log.d(
-            TAG,
-            "getAllArticles: view model author ${newsUseCase.getAllArticles(searchQuery)[1].author}"
-        )
-        Log.d(
-            TAG,
-            "getAllArticles: view model description  ${
-                newsUseCase.getAllArticles(searchQuery)[1].description
-            }"
-        )
         newsList.postValue(newsUseCase.getAllArticles(searchQuery))
     }
 }
