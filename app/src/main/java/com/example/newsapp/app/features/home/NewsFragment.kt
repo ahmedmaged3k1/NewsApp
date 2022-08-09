@@ -20,6 +20,7 @@ class NewsFragment : Fragment() {
     private lateinit var binding: FragmentNewsBinding
     private val newsRecyclerViewAdapter = NewsRecyclerViewAdapter()
     private val viewModel: NewsViewModel by activityViewModels()
+    private lateinit var items: MutableList<Int>
 
     //private lateinit var newsList: List<News>
     override fun onCreateView(
@@ -39,7 +40,7 @@ class NewsFragment : Fragment() {
         moviesRecyclerView.adapter = newsRecyclerViewAdapter
         val cardFlipPageTransformer = CardFlipPageTransformer2()
         cardFlipPageTransformer.isScalable = true
-
+    //    binding.newsRecyclerView.orientation = ViewPager2.ORIENTATION_VERTICAL
         binding.newsRecyclerView.setPageTransformer(cardFlipPageTransformer)
         initializeNews()
 
@@ -77,7 +78,7 @@ class NewsFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 viewModel.newsList.value?.get(position)?.seen = 1
-                newsRecyclerViewAdapter.submitList(viewModel.newsList.value)
+
 
             }
         })

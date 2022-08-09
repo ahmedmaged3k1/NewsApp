@@ -21,9 +21,9 @@ val diffCallback = object : DiffUtil.ItemCallback<News>() {
         return oldItem.seen == newItem.seen
 
 
-
     }
 }
+
 class NewsRecyclerViewAdapter :
     ListAdapter<News, NewsRecyclerViewAdapter.NewsViewHolder>(diffCallback) {
 
@@ -37,34 +37,34 @@ class NewsRecyclerViewAdapter :
 
     }
 
-    inner class NewsViewHolder  constructor(private val binding: NewsItemBinding) :
+    inner class NewsViewHolder constructor(private val binding: NewsItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun onBindItemHolder(holder: NewsViewHolder, position: Int) {
-            binding.authorName.text= getItem(position).author
-            Glide.with(holder.itemView.context).load(getItem(position).urlToImage).into(binding.newImage)
-            binding.description.text=getItem(position).description
-            if(getItem(position).seen==1)
-            {
+            binding.authorName.text = getItem(position).author
+            Glide.with(holder.itemView.context).load(getItem(position).urlToImage)
+                .into(binding.newImage)
+            binding.description.text = getItem(position).description
+            if (getItem(position).seen == 1) {
                 binding.seen.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
                 binding.constraintLayout.setBackgroundColor(Color.RED)
+
+            } else if (getItem(position).seen == 0) {
+                binding.seen.setImageResource(R.drawable.ic_baseline_panorama_fish_eye_24)
+                binding.constraintLayout.setBackgroundColor(Color.WHITE)
 
             }
 
         }
 
 
-
-
-
-
     }
-     fun from(parent: ViewGroup): NewsViewHolder {
+
+    fun from(parent: ViewGroup): NewsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = NewsItemBinding.inflate(inflater, parent, false)
         return NewsViewHolder(binding)
     }
-
 
 
 }
