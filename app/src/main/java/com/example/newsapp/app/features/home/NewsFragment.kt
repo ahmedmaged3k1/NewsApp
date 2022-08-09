@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
 import com.example.newsapp.databinding.FragmentNewsBinding
 import com.wajahatkarim3.easyflipviewpager.CardFlipPageTransformer2
@@ -40,14 +41,14 @@ class NewsFragment : Fragment() {
         moviesRecyclerView.adapter = newsRecyclerViewAdapter
         val cardFlipPageTransformer = CardFlipPageTransformer2()
         cardFlipPageTransformer.isScalable = true
-    //    binding.newsRecyclerView.orientation = ViewPager2.ORIENTATION_VERTICAL
+        //    binding.newsRecyclerView.orientation = ViewPager2.ORIENTATION_VERTICAL
         binding.newsRecyclerView.setPageTransformer(cardFlipPageTransformer)
         initializeNews()
 
     }
 
     private fun initializeNews() {
-        CoroutineScope(IO).launch {
+        lifecycleScope.launch {
             viewModel.getAllArticles("samsung")
         }
         observeNews()
@@ -77,8 +78,7 @@ class NewsFragment : Fragment() {
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                viewModel.newsList.value?.get(position)?.seen = 1
-
+                viewModel.changeArticleStatus(position-1)
 
             }
         })

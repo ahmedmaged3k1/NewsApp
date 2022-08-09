@@ -1,4 +1,4 @@
-package com.example.newsapp.domain.core.network
+package com.example.newsapp.data.network
 
 class Credentials {
     companion object {

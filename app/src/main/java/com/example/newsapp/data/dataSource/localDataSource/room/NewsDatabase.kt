@@ -1,4 +1,4 @@
-package com.example.newsapp.domain.dataSource.localDataSource.room
+package com.example.newsapp.data.dataSource.localDataSource.room
 
 import android.content.Context
 import androidx.room.Database

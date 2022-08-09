@@ -1,4 +1,4 @@
-package com.example.newsapp.domain.dataSource.remoteDataSource
+package com.example.newsapp.data.dataSource.remoteDataSource
 
 import com.example.newsapp.entities.NewsResponse
 import retrofit2.Response

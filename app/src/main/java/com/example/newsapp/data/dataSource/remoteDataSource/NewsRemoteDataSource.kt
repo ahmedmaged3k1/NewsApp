@@ -1,12 +1,9 @@
-package com.example.newsapp.domain.dataSource.remoteDataSource
+package com.example.newsapp.data.dataSource.remoteDataSource
 
-import android.content.ContentValues
-import android.os.Build
-import android.service.controls.ControlsProviderService.TAG
+import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.annotation.RequiresApi
-import com.example.newsapp.domain.core.network.Credentials
-import com.example.newsapp.domain.core.network.RetrofitInstance
+import com.example.newsapp.data.network.Credentials
+import com.example.newsapp.data.network.RetrofitInstance
 import com.example.newsapp.domain.repositories.NewsRemoteRepository
 import com.example.newsapp.entities.News
 import kotlinx.coroutines.Dispatchers
@@ -35,10 +32,11 @@ class NewsRemoteDataSource : NewsRemoteRepository {
                         )
                     )
                 newsList = response
-                Log.d(ContentValues.TAG, "getAllArticles: repo ${newsList.size}")
+
 
             } catch (e: Exception) {
-
+                 Log.d(TAG, "getAllArticles: ${e.message}")
+                e.printStackTrace()
             }
         }
 

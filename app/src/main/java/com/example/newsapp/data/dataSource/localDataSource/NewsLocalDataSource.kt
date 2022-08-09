@@ -1,7 +1,7 @@
-package com.example.newsapp.domain.dataSource.localDataSource
+package com.example.newsapp.data.dataSource.localDataSource
 
 import android.content.Context
-import com.example.newsapp.domain.dataSource.localDataSource.room.NewsDatabase
+import com.example.newsapp.data.dataSource.localDataSource.room.NewsDatabase
 import com.example.newsapp.domain.repositories.NewsLocalRepository
 import com.example.newsapp.entities.News
 import kotlinx.coroutines.Dispatchers

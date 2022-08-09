@@ -3,7 +3,7 @@ package com.example.newsapp.domain.useCases
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
-import com.example.newsapp.domain.dataSource.localDataSource.NewsLocalDataSource
+import com.example.newsapp.data.dataSource.localDataSource.NewsLocalDataSource
 import com.example.newsapp.entities.News
 
 class NewsLocalUseCase(context: Context) {
